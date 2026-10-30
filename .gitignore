@@ -1,0 +1,7 @@
+node_modules/
+downloads/
+.minecraft/
+.minecraft-test/
+*.log
+.env
+.DS_Store

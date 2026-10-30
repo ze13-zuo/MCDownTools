@@ -1,0 +1,14 @@
+{
+  "name": "mcdown-tools",
+  "version": "1.0.0",
+  "description": "Minecraft 资源下载工具（Node.js 服务端 + HTML 前端）",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "license": "MIT"
+}

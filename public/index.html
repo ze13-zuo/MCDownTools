@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCDownTools - Minecraft 加载器下载工具</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <div>
+        <h1>MCDownTools</h1>
+        <p class="app__subtitle">Minecraft 加载器下载与安装工具（Fabric / Forge / NeoForge）</p>
+      </div>
+      <button type="button" id="theme-toggle" class="btn btn--ghost theme-toggle">亮色模式</button>
+    </header>
+
+    <section class="panel">
+      <h2 class="panel__title">下载设置</h2>
+
+      <form id="download-form" class="form">
+        <div class="form__row">
+          <label for="loader">加载器</label>
+          <select id="loader" name="loader">
+            <option value="fabric">Fabric</option>
+            <option value="forge">Forge</option>
+            <option value="neoforge">NeoForge</option>
+            <option value="vanilla">原版（仅下载游戏本体）</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <label for="mirror">下载源</label>
+          <select id="mirror" name="mirror">
+            <option value="auto">自动（根据时区）</option>
+            <option value="bmclapi">BMCLAPI 镜像</option>
+            <option value="official">官方源</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <label for="version-type">版本类型</label>
+          <select id="version-type" name="type">
+            <option value="release">正式版</option>
+            <option value="snapshot">快照版</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <label for="game-version">游戏版本</label>
+          <select id="game-version" disabled>
+            <option value="">加载中...</option>
+          </select>
+        </div>
+
+        <div class="form__row" id="loader-version-row">
+          <label for="loader-version">加载器版本</label>
+          <select id="loader-version" disabled>
+            <option value="">请先选择游戏版本</option>
+          </select>
+        </div>
+
+        <div class="form__row">
+          <label for="download-dir">下载目录</label>
+          <input id="download-dir" name="downloadDir" type="text" value="./downloads" />
+        </div>
+
+        <div class="form__row">
+          <label for="game-dir">游戏目录</label>
+          <input id="game-dir" name="gameDir" type="text" value="./.minecraft" />
+        </div>
+
+        <div class="form__row">
+          <label for="threads">下载线程</label>
+          <input id="threads" name="threads" type="number" min="1" max="128" step="1" value="32" />
+        </div>
+
+        <div class="form__row form__row--check" id="download-vanilla-row">
+          <label for="download-vanilla">下载原版游戏</label>
+          <input id="download-vanilla" name="downloadVanilla" type="checkbox" checked />
+        </div>
+
+        <div class="form__row form__row--check" id="isolate-row">
+          <label for="isolate">版本隔离</label>
+          <input id="isolate" name="isolate" type="checkbox" checked />
+        </div>
+
+        <div class="form__row form__row--check" id="auto-install-row">
+          <label for="auto-install">下载后安装</label>
+          <input id="auto-install" name="autoInstall" type="checkbox" checked />
+        </div>
+
+        <p class="hint" id="mirror-hint">正在检测下载源...</p>
+        <p class="hint">「下载线程」表示同时下载的文件数，可填 1–128（默认 32），线程越大下载越快，但占用带宽与连接数更多。</p>
+        <p class="hint">「下载原版游戏」会补齐 client.jar、库文件和资源；「版本隔离」会为 mods / saves / config 创建独立目录。</p>
+        <p class="hint">自动安装需要本机 Java：Minecraft 1.17+ 建议 JDK 17，1.21+ 建议 JDK 21。</p>
+
+        <div class="form__actions">
+          <button type="button" id="refresh" class="btn btn--ghost">刷新列表</button>
+          <button type="submit" id="submit" class="btn btn--primary">开始下载</button>
+        </div>
+      </form>
+
+      <div class="progress-wrap">
+        <div class="progress">
+          <div class="progress__bar" id="progress-bar"></div>
+        </div>
+        <p class="progress__text" id="progress-text">就绪</p>
+      </div>
+    </section>
+
+    <footer class="app__footer">
+      <span id="app-version">MCDownTools</span>
+      <span>by ze13-zuo · <a class="app__link" href="https://github.com/ze13-zuo" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    </footer>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="/assets/app.js" type="module"></script>
+</body>
+</html>
